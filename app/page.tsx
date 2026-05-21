@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { BookOpen, Bookmark, Heart, Search, Star } from "lucide-react";
 import { BookCard } from "@/components/book-card";
-import { getBooks } from "@/services/books";
+import { getBooks, type BookWithStats } from "@/services/books";
 
 export default async function Home() {
-  const books = await getBooks();
+  const books: BookWithStats[] = await getBooks();
   const [featured] = books;
 
   return (

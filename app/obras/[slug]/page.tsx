@@ -31,7 +31,9 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
 
   const reviews = "reviews" in book ? book.reviews : [];
   const comments = "comments" in book ? book.comments : [];
-  const avg = reviews.length ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length : 4.9;
+  const avg = reviews.length
+    ? reviews.reduce((sum: number, review) => sum + review.rating, 0) / reviews.length
+    : 4.9;
 
   return (
     <div className="pb-24 md:pb-12">

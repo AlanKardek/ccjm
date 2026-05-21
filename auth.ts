@@ -18,6 +18,23 @@ const googleClientSecret = process.env.NEXTAUTH_GOOGLE_SECRET ?? process.env.AUT
 const facebookClientId = process.env.NEXTAUTH_FACEBOOK_ID ?? process.env.AUTH_FACEBOOK_ID;
 const facebookClientSecret = process.env.NEXTAUTH_FACEBOOK_SECRET ?? process.env.AUTH_FACEBOOK_SECRET;
 
+const nextAuthUrl =
+  process.env.NEXTAUTH_URL ??
+  process.env.AUTH_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ??
+  (process.env.NODE_ENV === "production" ? "https://ccjm.vercel.app" : undefined);
+if (nextAuthUrl) {
+  process.env.NEXTAUTH_URL = nextAuthUrl;
+}
+
+const nextAuthSecret =
+  process.env.NEXTAUTH_SECRET ??
+  process.env.AUTH_SECRET ??
+  (process.env.NODE_ENV === "production" ? "montello-demo-secret" : undefined);
+if (nextAuthSecret) {
+  process.env.NEXTAUTH_SECRET = nextAuthSecret;
+}
+
 const providers = [
   googleClientId && googleClientSecret
     ? Google({
@@ -103,8 +120,8 @@ const providers = [
 ].filter(Boolean) as any[];
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET,
+  ...(process.env.DATABASE_URL ? { adapter: PrismaAdapter(prisma) } : {}),
+  secret: process.env.NEXTAUTH_SECRET,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",

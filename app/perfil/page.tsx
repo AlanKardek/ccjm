@@ -16,9 +16,9 @@ export default async function PerfilPage() {
   const profile = await getProfile(session.user.id);
   if (!profile) redirect("/login");
 
-  const read = profile.library.filter((item) => item.status === "READ");
-  const reading = profile.library.filter((item) => item.status === "READING");
-  const want = profile.library.filter((item) => item.status === "WANT_TO_READ");
+  const read = profile.library.filter((item: { status: string }) => item.status === "READ");
+  const reading = profile.library.filter((item: { status: string }) => item.status === "READING");
+  const want = profile.library.filter((item: { status: string }) => item.status === "WANT_TO_READ");
 
   return (
     <div className="pb-24 md:grid md:grid-cols-[220px_1fr] md:pb-0">

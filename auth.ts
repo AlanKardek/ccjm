@@ -59,7 +59,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return null;
         }
 
-        if (!user && isDemo) {
+        if (!user) {
+          if (isDemo) {
+            return {
+              id: DEMO_FALLBACK_ID,
+              email,
+              name: "Leitora Maranhense",
+              image: "https://api.dicebear.com/9.x/initials/svg?seed=Leitora%20Maranhense",
+              username: "leitora",
+            };
+          }
+
+          return null;
+        }
+
+        if (isDemo) {
           return {
             id: DEMO_FALLBACK_ID,
             email,
@@ -69,7 +83,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           };
         }
 
-        if (!user?.passwordHash) return null;
+        if (!user.passwordHash) return null;
 
         const valid = await bcrypt.compare(parsed.data.password, user.passwordHash);
         if (!valid) return null;
@@ -89,6 +103,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (user) {
         token.id = user.id;
         token.username = user.username;
+        token.email = user.email;
       }
       if ((token.id === DEMO_FALLBACK_ID || token.email === DEMO_EMAIL) && token.email === DEMO_EMAIL) {
         const demo = await getPersistedDemoUser();

@@ -9,7 +9,10 @@
     "lint": "eslint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:seed": "tsx prisma/seed.ts"
+    "prisma:seed": "tsx prisma/seed.ts",
+    "db:start": "docker compose up -d",
+    "db:stop": "docker compose down -v",
+    "dev:setup": "powershell -ExecutionPolicy Bypass -File scripts/setup-dev.ps1"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

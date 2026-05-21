@@ -13,23 +13,25 @@ const credentialsSchema = z.object({
   password: z.string().min(6),
 });
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXTAUTH_SECRET,
-  session: { strategy: "jwt" },
-  pages: {
-    signIn: "/login",
-  },
-  providers: [
-    Google({
-      clientId: process.env.NEXTAUTH_GOOGLE_ID ?? process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.NEXTAUTH_GOOGLE_SECRET ?? process.env.AUTH_GOOGLE_SECRET,
-    }),
-    Facebook({
-      clientId: process.env.NEXTAUTH_FACEBOOK_ID ?? process.env.AUTH_FACEBOOK_ID,
-      clientSecret: process.env.NEXTAUTH_FACEBOOK_SECRET ?? process.env.AUTH_FACEBOOK_SECRET,
-    }),
-    Credentials({
+const googleClientId = process.env.NEXTAUTH_GOOGLE_ID ?? process.env.AUTH_GOOGLE_ID;
+const googleClientSecret = process.env.NEXTAUTH_GOOGLE_SECRET ?? process.env.AUTH_GOOGLE_SECRET;
+const facebookClientId = process.env.NEXTAUTH_FACEBOOK_ID ?? process.env.AUTH_FACEBOOK_ID;
+const facebookClientSecret = process.env.NEXTAUTH_FACEBOOK_SECRET ?? process.env.AUTH_FACEBOOK_SECRET;
+
+const providers = [
+  googleClientId && googleClientSecret
+    ? Google({
+        clientId: googleClientId,
+        clientSecret: googleClientSecret,
+      })
+    : null,
+  facebookClientId && facebookClientSecret
+    ? Facebook({
+        clientId: facebookClientId,
+        clientSecret: facebookClientSecret,
+      })
+    : null,
+  Credentials({
       name: "Email e senha",
       credentials: {
         email: { label: "Email", type: "email" },
@@ -98,7 +100,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         };
       },
     }),
-  ],
+].filter(Boolean) as any[];
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET,
+  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/login",
+  },
+  providers,
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

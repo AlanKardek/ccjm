@@ -38,11 +38,19 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
     _count: { likes: number };
   };
 
+  type Comment = {
+    id: string;
+    content: string;
+    user: { name: string };
+    userId: string;
+    _count: { likes: number };
+  };
+
   const reviews: Review[] =
     "reviews" in book ? (book.reviews as Review[]) : [];
 
-  const comments =
-    "comments" in book ? book.comments : [];
+  const comments: Comment[] =
+    "comments" in book ? (book.comments as Comment[]) : [];
 
   const avg =
     reviews.length > 0

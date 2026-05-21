@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="none">
+  <rect width="1600" height="520" fill="#120d08"/>
+  <defs>
+    <linearGradient id="shelf" x1="0" x2="1">
+      <stop offset="0" stop-color="#21150c"/>
+      <stop offset=".5" stop-color="#4b2d16"/>
+      <stop offset="1" stop-color="#110b06"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx=".78" cy=".25" r=".5">
+      <stop offset="0" stop-color="#d8a44f" stop-opacity=".55"/>
+      <stop offset=".45" stop-color="#d8a44f" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="1600" height="330" fill="url(#shelf)"/>
+  <g opacity=".38">
+    <rect x="720" y="38" width="30" height="210" fill="#2f1a0d"/>
+    <rect x="760" y="44" width="22" height="204" fill="#6f3d1a"/>
+    <rect x="790" y="30" width="36" height="218" fill="#3d2413"/>
+    <rect x="838" y="58" width="20" height="190" fill="#9a6228"/>
+    <rect x="870" y="35" width="42" height="213" fill="#23150c"/>
+    <rect x="925" y="46" width="28" height="202" fill="#7b441d"/>
+    <rect x="965" y="28" width="34" height="220" fill="#513019"/>
+    <rect x="1012" y="52" width="24" height="196" fill="#2b190d"/>
+    <rect x="1048" y="38" width="42" height="210" fill="#8b501f"/>
+    <rect x="1100" y="34" width="30" height="214" fill="#27180e"/>
+    <rect x="1144" y="48" width="26" height="200" fill="#704019"/>
+  </g>
+  <rect x="0" y="300" width="1600" height="220" fill="#170f09"/>
+  <ellipse cx="1010" cy="390" rx="230" ry="35" fill="#000" opacity=".35"/>
+  <path d="M870 384l330-58 112 74-355 54z" fill="#d8c29e"/>
+  <path d="M914 394c76-13 162-27 245-38M940 412c74-13 156-26 228-37M970 431c59-10 120-21 184-31" stroke="#5a3920" stroke-width="4" opacity=".55"/>
+  <rect x="1240" y="118" width="148" height="190" rx="4" fill="#6f4b21"/>
+  <rect x="1252" y="130" width="124" height="166" fill="#c4ad83"/>
+  <ellipse cx="1314" cy="206" rx="42" ry="54" fill="#746751"/>
+  <path d="M1276 292c17-42 59-42 78 0" fill="#3a2b1b"/>
+  <rect x="1328" y="350" width="180" height="16" rx="8" fill="#67411d"/>
+  <rect x="1314" y="334" width="120" height="18" rx="8" fill="#21150c"/>
+  <circle cx="1210" cy="340" r="34" fill="#110b06"/>
+  <rect x="1196" y="296" width="32" height="48" fill="#070503"/>
+  <rect width="1600" height="520" fill="url(#lamp)"/>
+</svg>

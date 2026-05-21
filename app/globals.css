@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4ead8;
+  --foreground: #22160d;
+  --paper: #f4ead8;
+  --paper-soft: #fbf3e7;
+  --ink: #22160d;
+  --gold: #c29a4a;
+  --coffee: #120d08;
+  --line: #decfb8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-serif);
+}
+
+.dark {
+  --background: #120d08;
+  --foreground: #f6efe4;
+  --paper: #120d08;
+  --paper-soft: #1c140d;
+  --ink: #f6efe4;
+  --line: #38291b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(194, 154, 74, 0.16), transparent 28rem),
+    linear-gradient(90deg, rgba(99, 63, 24, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(99, 63, 24, 0.028) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.field {
+  @apply w-full rounded-md border border-stone-300/80 bg-white/70 px-3 py-3 text-sm text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-amber-600 focus:ring-4 focus:ring-amber-500/15 dark:border-stone-700 dark:bg-stone-950/70 dark:text-stone-50;
+}
+
+.primary-btn {
+  @apply inline-flex h-11 items-center justify-center gap-2 rounded-md bg-stone-950 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-amber-200 dark:text-stone-950 dark:hover:bg-amber-300;
+}
+
+.secondary-btn {
+  @apply inline-flex h-11 items-center justify-center gap-2 rounded-md border border-stone-400/60 bg-white/45 px-4 text-sm font-semibold text-stone-900 transition hover:border-amber-600 hover:bg-amber-50 dark:border-stone-700 dark:bg-stone-950/50 dark:text-stone-50 dark:hover:bg-stone-900;
+}
+
+.surface {
+  @apply rounded-lg border border-stone-300/70 bg-[#fbf3e7]/70 shadow-sm shadow-stone-900/5 dark:border-stone-800 dark:bg-stone-900/70;
+}
+
+.phone-page {
+  @apply mx-auto min-h-[calc(100svh-4rem)] max-w-md px-4 pb-24 pt-4 md:max-w-none md:px-0 md:pb-0 md:pt-0;
+}
+
+.book-cover-card {
+  background: linear-gradient(180deg, rgba(20, 12, 5, 0.06), rgba(0, 0, 0, 0.76));
+}
+
+.text-balance {
+  text-wrap: balance;
+}

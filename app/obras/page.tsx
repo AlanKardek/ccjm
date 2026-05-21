@@ -13,7 +13,7 @@ export default async function ObrasPage({
   searchParams: Promise<{ q?: string; genre?: string }>;
 }) {
   const params = await searchParams;
-  const books = await getBooks(params.q, params.genre);
+  const books: Awaited<ReturnType<typeof getBooks>> = await getBooks(params.q, params.genre);
   const genres: string[] = await getGenres();
 
   return (

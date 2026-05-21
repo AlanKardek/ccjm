@@ -15,18 +15,19 @@ const credentialsSchema = z.object({
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
   },
   providers: [
     Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      clientId: process.env.NEXTAUTH_GOOGLE_ID ?? process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.NEXTAUTH_GOOGLE_SECRET ?? process.env.AUTH_GOOGLE_SECRET,
     }),
     Facebook({
-      clientId: process.env.AUTH_FACEBOOK_ID,
-      clientSecret: process.env.AUTH_FACEBOOK_SECRET,
+      clientId: process.env.NEXTAUTH_FACEBOOK_ID ?? process.env.AUTH_FACEBOOK_ID,
+      clientSecret: process.env.NEXTAUTH_FACEBOOK_SECRET ?? process.env.AUTH_FACEBOOK_SECRET,
     }),
     Credentials({
       name: "Email e senha",

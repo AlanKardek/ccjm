@@ -16,6 +16,7 @@ cp .env.example .env
 # DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ccjm?schema=public
 # NEXTAUTH_URL=http://localhost:3000
 # NEXTAUTH_SECRET=<uma-chave-forte>
+# Se preferir, mantenha também AUTH_GOOGLE_ID/AUTH_GOOGLE_SECRET e AUTH_FACEBOOK_ID/AUTH_FACEBOOK_SECRET para compatibilidade.
 ```
 
 3) Gerar client Prisma, aplicar migrations e rodar seed:
@@ -37,11 +38,12 @@ npm run dev
 # use email: leitora@montello.app e senha: montello123
 ```
 
-5) Configurar variáveis no Netlify (produção):
+5) Configurar variáveis no Netlify/Vercel (produção):
 
 - `DATABASE_URL` apontando para seu banco de produção
-- `NEXTAUTH_URL` com a URL do site (ex.: https://seusite.netlify.app)
+- `NEXTAUTH_URL` com a URL do site (ex.: https://seusite.netlify.app ou https://seu-projeto.vercel.app)
 - `NEXTAUTH_SECRET` e credenciais OAuth
+- opcional: `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`, `AUTH_FACEBOOK_ID`, `AUTH_FACEBOOK_SECRET` para compatibilidade
 
 Observações:
 - Não comite o arquivo `.env` no repositório. Use o `.env.example` como referência.

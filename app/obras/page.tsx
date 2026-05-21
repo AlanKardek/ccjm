@@ -13,7 +13,8 @@ export default async function ObrasPage({
   searchParams: Promise<{ q?: string; genre?: string }>;
 }) {
   const params = await searchParams;
-  const [books, genres] = await Promise.all([getBooks(params.q, params.genre), getGenres()]);
+  const books = await getBooks(params.q, params.genre);
+  const genres: string[] = await getGenres();
 
   return (
     <div className="phone-page md:mx-auto md:max-w-[1500px] md:px-8 md:py-8">

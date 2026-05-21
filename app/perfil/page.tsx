@@ -82,18 +82,24 @@ export default async function PerfilPage() {
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-2">
-          <Feed title="Resenhas publicadas" items={profile.reviews.map((review) => ({
-            href: `/obras/${review.book.slug}`,
-            title: review.title,
-            meta: `${review.book.title} · ${review.rating} estrelas`,
-            body: review.content,
-          }))} />
-          <Feed title="Comentários realizados" items={profile.comments.map((comment) => ({
-            href: `/obras/${comment.book.slug}`,
-            title: comment.book.title,
-            meta: "Comentário",
-            body: comment.content,
-          }))} />
+          <Feed
+            title="Resenhas publicadas"
+            items={profile.reviews.map((review: { title: string; content: string; rating: number; book: { slug: string; title: string } }) => ({
+              href: `/obras/${review.book.slug}`,
+              title: review.title,
+              meta: `${review.book.title} · ${review.rating} estrelas`,
+              body: review.content,
+            }))}
+          />
+          <Feed
+            title="Comentários realizados"
+            items={profile.comments.map((comment: { content: string; book: { slug: string; title: string } }) => ({
+              href: `/obras/${comment.book.slug}`,
+              title: comment.book.title,
+              meta: "Comentário",
+              body: comment.content,
+            }))}
+          />
         </section>
       </main>
     </div>

@@ -29,11 +29,28 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
   const [book, session] = await Promise.all([getBook(slug), auth()]);
   if (!book) notFound();
 
-  const reviews = "reviews" in book ? book.reviews : [];
-  const comments = "comments" in book ? book.comments : [];
-  const avg = reviews.length
-    ? reviews.reduce<number>((sum, review) => sum + review.rating, 0) / reviews.length
-    : 4.9;
+  type Review = {
+    id: string;
+    title: string;
+    content: string;
+    rating: number;
+    user: { name: string };
+    _count: { likes: number };
+  };
+
+  const reviews: Review[] =
+    "reviews" in book ? (book.reviews as Review[]) : [];
+
+  const comments =
+    "comments" in book ? book.comments : [];
+
+  const avg =
+    reviews.length > 0
+      ? reviews.reduce<number>(
+          (sum: number, review: Review) => sum + review.rating,
+          0
+        ) / reviews.length
+      : 4.9;
 
   return (
     <div className="pb-24 md:pb-12">

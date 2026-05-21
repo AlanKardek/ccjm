@@ -116,7 +116,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
           <div className="mt-8">
             <h2 className="font-serif text-2xl font-semibold">Curiosidades</h2>
             <div className="mt-3 grid gap-2">
-              {book.curiosities.map((item) => <p key={item} className="surface p-3 text-sm leading-6">{item}</p>)}
+              {book.curiosities.map((item: string) => <p key={item} className="surface p-3 text-sm leading-6">{item}</p>)}
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BookCard, BookListRow } from "@/components/book-card";
-import { getBooks, getGenres } from "@/services/books";
+import { getBooks, getGenres, type BookWithStats } from "@/services/books";
 
 export const metadata: Metadata = {
   title: "Obras",
@@ -13,7 +13,7 @@ export default async function ObrasPage({
   searchParams: Promise<{ q?: string; genre?: string }>;
 }) {
   const params = await searchParams;
-  const books: Awaited<ReturnType<typeof getBooks>> = await getBooks(params.q, params.genre);
+  const books: BookWithStats[] = await getBooks(params.q, params.genre);
   const genres: string[] = await getGenres();
 
   return (

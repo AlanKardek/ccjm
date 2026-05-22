@@ -36,4 +36,4 @@ npx prisma generate
 Write-Host "Rodando seed..."
 npm run prisma:seed
 
-Write-Host "Pronto — inicie a aplicação com: npm run dev"
+Write-Host "Pronto - inicie a aplicacao com: npm run dev"

@@ -21,7 +21,6 @@ const facebookClientSecret = process.env.NEXTAUTH_FACEBOOK_SECRET ?? process.env
 const nextAuthUrl =
   process.env.NEXTAUTH_URL ??
   process.env.AUTH_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ??
   (process.env.NODE_ENV === "production" ? "https://ccjm.vercel.app" : undefined);
 if (nextAuthUrl) {
   process.env.NEXTAUTH_URL = nextAuthUrl;
@@ -128,6 +127,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   providers,
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      try {
+        const destination = new URL(url);
+        if (destination.origin === baseUrl) return url;
+      } catch {
+        // ignore invalid URLs
+      }
+      return baseUrl;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;

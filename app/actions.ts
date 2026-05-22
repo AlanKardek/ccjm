@@ -48,11 +48,15 @@ export async function registerAction(_: unknown, formData: FormData) {
 
 export async function loginAction(_: unknown, formData: FormData) {
   try {
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
       email: String(formData.get("email") ?? ""),
       password: String(formData.get("password") ?? ""),
       redirectTo: "/perfil",
     });
+
+    if (result === false) {
+      return { error: "Email ou senha inválidos." };
+    }
   } catch (error) {
     if (error instanceof AuthError) return { error: "Email ou senha inválidos." };
     throw error;

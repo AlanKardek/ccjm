@@ -16,7 +16,7 @@ cp .env.example .env
 # DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ccjm?schema=public
 # NEXTAUTH_URL=http://localhost:3000
 # NEXTAUTH_SECRET=<uma-chave-forte>
-# Se preferir, mantenha também AUTH_GOOGLE_ID/AUTH_GOOGLE_SECRET e AUTH_FACEBOOK_ID/AUTH_FACEBOOK_SECRET para compatibilidade.
+# Se houver compatibilidade, você pode manter também AUTH_URL, AUTH_GOOGLE_ID/AUTH_GOOGLE_SECRET e AUTH_FACEBOOK_ID/AUTH_FACEBOOK_SECRET.
 ```
 
 3) Gerar client Prisma, aplicar migrations e rodar seed:
